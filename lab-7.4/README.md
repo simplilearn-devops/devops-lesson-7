@@ -52,7 +52,7 @@ Log out with control-D.
 
 Stop the server.  
 `docker-compose down`  
-`docker-com[ose ps`  
+`docker-compose ps`  
 
 ### Step 5
 
