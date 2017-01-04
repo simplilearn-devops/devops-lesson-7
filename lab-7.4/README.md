@@ -6,6 +6,12 @@ Use Docker Compose to manage a container.
 
 Start and connect to your Google Compute Engine virtual machine.
 
+Download the docker-compose executable.  
+`cd`  
+`mkdir bin`  
+`curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o bin/docker-compose`  
+`chmod + x bin/docker-compose`  
+
 ### Step 2
 
 Change to the exoercise directory.  
@@ -41,8 +47,8 @@ Look at the Docker Compose YAML file.
 
 The directory `sshd` is a build directory containin g a copy of the Deckerfile.  
 Start the server.  
-`docker-compose up -d`  
-`docker-compose ps`
+`~/bin/docker-compose up -d`  
+`~/bin/docker-compose ps`
 
 Connect to the ssh server.  
 `ssh -p 2222 student@localhost`  
@@ -51,8 +57,8 @@ Verify that you are logged into the server.
 Log out with control-D.  
 
 Stop the server.  
-`docker-compose down`  
-`docker-compose ps`  
+`~/bin/docker-compose down`  
+`~/bin/docker-compose ps`  
 
 ### Step 5
 
