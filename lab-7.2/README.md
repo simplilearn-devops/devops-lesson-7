@@ -14,7 +14,7 @@ Change to the exercise directory.
 `cd`  
 `cd devops-lesson-7/lab-7.2`  
 
-Create a Centos Docker container and install net-tools.
+Create a Centos Docker container and install net-tools.  
 `docker run -it --name centos centos /bin/bash`  
 `yum install -y net-tools`  
 
@@ -65,7 +65,7 @@ Go back to the running container and see that it now has two IP addresses.
 `cat /etc/hosts`  
 `hostname`  
 
-Go to the scond SSH window and disconnect the network.  
+Go to the second SSH window and disconnect the network.  
 `docker network disconnect exnet centos`  
 
 Go back to the running container and see that it now has one IP address.  
