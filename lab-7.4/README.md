@@ -10,7 +10,7 @@ Download the docker-compose executable.
 `cd`  
 `mkdir bin`  
 `curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o bin/docker-compose`  
-`chmod + x bin/docker-compose`  
+`chmod +x bin/docker-compose`  
 
 ### Step 2
 
