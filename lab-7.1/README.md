@@ -58,9 +58,9 @@ Open the lab-7.1 folder.
 Select the Mocking folder and hit _OK_ at the bottom of the dialog.  
 Hit the _Finish_ button at the bottom of the dialog.  
 
-You should see the Mocking project on the left. The test folder is marked in red as there is a mising dependency.
+You should see the Mocking project on the left. The test folder is marked in red as there is a missing dependency.
 
-Select the Mocking project and right click. A mnu will appear. Select _Properties_ at the bottom.
+Select the Mocking project and right click. A menu will appear. Select _Properties_ at the bottom.
 
 Select _Java Build Path_.  
 Select the _Libraries_ tab.  
@@ -70,11 +70,12 @@ Make sure that _JUnit 4_ is selected and then hit _Finish_.
 
 Select _Add Jars_.  
 Open the _Mocking_ folder and then open the _lib_ folder.  
-You shpuld see 4 jar files. Select them all and hit _OK_.
+You shpuld see 4 jar files. Select them all and hit _OK_. If the lib folder isn’t visible
+it means that Eclipse has automatically loaded the jar files and nothing needs to be done.
 
 Hit _OK_ the project errors should disappear.
 
-Open up the soure and test folders and the devops packages.
+Open up the source and test folders and the devops packages.
 Double click on LoginController.java and LoginControlerTests.java. Editor windows will open.
 
 ### Step 6
@@ -91,6 +92,6 @@ If you have time implement more tests.
 
 ### Step 7
 
-Exit eclipse by slecting _File_->_Exit_.
+Exit eclipse by selecting _File_->_Exit_.
 
 Close the VNC viewer.
