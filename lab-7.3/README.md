@@ -11,7 +11,7 @@ Create a Docker network for puppet.
 
 Check what got created.
 
-`docket network ls`  
+`docker network ls`  
 
 ### Step 2
 
@@ -41,7 +41,7 @@ Start the puppet agent. It will connect to the server and perform a certificate 
 
 ### Step 5
 
-Now let's find out what package puppet is manageing.
+Now let's find out what package puppet is managing.
 
 `docker run --rm --net puppet --link=puppetserver:puppet puppet/puppet-agent-alpine resource package`  
 
