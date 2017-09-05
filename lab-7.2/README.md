@@ -1,77 +1,53 @@
-# Exercise 7.2 Docker networking
+# Exercise 7.3 Configuration Management with Puppet
 
-We will use docker networking and see how it is configured in a container.
+We will now pull and run a puppet server and a puppet client in
+Docker containers.
 
 ### Step 1
 
-Connect to the Google Compute Engine virtual machine.
+Create a Docker network for puppet.
 
-You will need two SSH sessions for this exercise.
+`docker network create puppet`  
+
+Check what got created.
+
+`docker network ls`  
 
 ### Step 2
 
-Change to the exercise directory.  
-`cd`  
-`cd devops-lesson-7/lab-7.2`  
+Pull the puppet images.
 
-Create a Centos Docker container and install net-tools.  
-`docker run -it --name centos centos /bin/bash`  
-`yum install -y net-tools`  
-
-Check the IP address and hostname.  
-`ifconfig`  
-`cat /etc/hosts`  
-`hostname`  
-
-Exit the container using control-D.  
-
-Commit the container to an image.  
-`docker commit centos centos-net`  
+`docker pull puppet/puppetserver-standalone`  
+`docker pull puppet/puppet-agent-alpine`  
 `docker images`  
-`docker rm centos`  
 
 ### Step 3
 
-Create a bridge network and find its IP range.  
-`docker network create exnet`  
-`docker network ls`  
-`docker network inspect exnet`  
+Start the puppet server.
 
-Run the centos container with the new network.  
-`docker run -it --rm --network exnet centos-net /bin/bash`  
+`docker run --net puppet -d --name puppetserver --hostname puppet puppet/puppetserver-standalone`  
+`docker ps`  
 
-Check the IP address and hostname.  
-`ifconfig`  
-`cat /etc/hosts`  
-`hostname`  
-
-Exit the container with control-D.
+We need to ensure that the server is running. Extract the logs until you see
+the message:  
+Puppet Server has successfully started and is now ready to handle requests  
+`docker logs puppetserver`  
 
 ### Step 4
 
-Start a new container using the default network.  
-`docker run -it --rm --name centos centos-net /bin/bash`  
+Start the puppet agent. It will connect to the server and perform a certificate exchange. Check out the output.
 
-Check the IP address and hostname.  
-`ifconfig`  
-`cat /etc/hosts`  
-`hostname`  
+`docker run --rm --net puppet --link=puppetserver:puppet puppet/puppet-agent-alpine`  
 
-From the second SSH windows connect the network to the container.  
-`docker network connect exnet centos`  
+### Step 5
 
-Go back to the running container and see that it now has two IP addresses.  
-`ifconfig`  
-`cat /etc/hosts`  
-`hostname`  
+Now let's find out what package puppet is managing.
 
-Go to the second SSH window and disconnect the network.  
-`docker network disconnect exnet centos`  
+`docker run --rm --net puppet --link=puppetserver:puppet puppet/puppet-agent-alpine resource package`  
 
-Go back to the running container and see that it now has one IP address.  
-`ifconfig`  
-`cat /etc/hosts`  
-`hostname`  
+### Step 6
 
-Exit the container with control-D.
+Tidy up.
+
+`docker rm -f puppetserver`  
 
